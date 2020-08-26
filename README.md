@@ -1,3 +1,5 @@
+## UNDER DEVELOPMENT BY FAWAZ SIDDIQI (github.com/fawazsiddiqi)
+
 # JupyterCon Tutorial
 
 [JupyterCon](https://jupytercon.com) will use this template to create a new repository for each tutorial, with speakers added as collaborators. 
