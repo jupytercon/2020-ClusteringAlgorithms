@@ -1,14 +1,12 @@
-## UNDER DEVELOPMENT BY FAWAZ SIDDIQI (github.com/fawazsiddiqi)
-
 ## Introduction
 
 In this tutorial, you use unsupervised learning to discover groupings and anomalies in data. Unsupervised learning is when there is no *ground truth* or labeled data set that shows you the expected result. Instead, you take the raw data and use various algorithms to uncover clusters of data. If you want to learn about the theory and ideas behind unsupervised learning, read [Unsupervised learning for data classification](https://developer.ibm.com/articles/cc-unsupervised-learning-data-classification/).
 
-![cluster_plotly.gif](images/cluster_plotly.gif)
+![cluster_plotly.gif](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/cluster_plotly.gif?raw=true)
 
 As the clusters become apparent (for example, in 3-D charts), you might be tempted to apply labels to clusters. That is an example of using unsupervised learning to discover hidden features in your data. If you don't care about the clusters, but want to learn more about the outliers, then you are looking at *anomaly detection*.
 
-![cluster_anomalies.gif](images/cluster_anomalies.gif)
+![cluster_anomalies.gif](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/cluster_anomalies.gif?raw=true)
 
 It's important to note that when you try to visualize data, you tend to use two-dimensional or three-dimensional data, which is the easiest to plot. But the techniques I am using here apply to multidimensional or hyperdimensional data. It is harder to visualize, but you can still measure the mathematical distribution of data in the clusters and use the discovered groupings and outliers in much the same way.
 
@@ -82,7 +80,7 @@ Our first example uses the data set that was generated with scikit-learn's `make
 
 The following code trains a k-means model and runs prediction on the data set. The chart uses color to show the predicted cluster membership and a red X to show the cluster center.
 
-![kmeans_blobs.png](images/kmeans_blobs.png)
+![kmeans_blobs.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/kmeans_blobs.png?raw=true)
 
 That's how easy it is when you have the right clustering algorithm for the data. If you are running the Notebook, feel free to change k and rerun the cell to see how the blobs must be divided or combined when k is not equal to 3.
 
@@ -100,17 +98,17 @@ The second big limitation is that k-means separates the points into spherical sh
 
 Visually, it is obvious that the data points form two shapes, and with k=2 you would like to see the predicted clusters separate the smile from the frown. Unfortunately, you cannot do that separation using spherical clusters.
 
-![kmeans_moons.png](images/kmeans_moons.jpg)
+![kmeans_moons.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/kmeans_moons.jpg?raw=true)
 
 #### k-means customer clusterer
 
 To look at a less-contrived example, we've used part of a customer data set that includes customer demographics, account activity, and stock-trading profit. Once again, we have more than three dimensions, but we've chosen three significant ones to help with the visualization. The following image shows our result with k=3. We'll use this to show how some of the other algorithms compare. After you get the hang of it, try it out with your own data.
 
-![kmeans_customers.png](images/kmeans_customers.png)
+![kmeans_customers.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/kmeans_customers.png?raw=true)
 
 In some use cases, the cluster shapes are useful. For example, clustering is often part of image recognition where the goal is to recognize shapes. However, for our customer example, the shapes help us demonstrate cluster separation and density, but the real goal would be to identify groups of customers so that we can use those groupings for a business purpose. In our example, we had a churn risk label that was not included in the data set for training and prediction. Now, we'll compare our predicted clusters with our known churn risk just to see if we found a customer grouping that might be interesting. Did we uncover a hidden feature or common trait in our customer groupings?
 
-![kmeans_risk.png](images/kmeans_risk.png)
+![kmeans_risk.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/kmeans_risk.png?raw=true)
 
 It turns out that these three clusters are great for separating out the low-risk customers. The high-risk cluster looks useful, but we'd need more information to know if the medium/high cluster is useful. We'll use this external evaluation along with scatter diagrams to help illustrate the differences as we try some other clustering algorithms.
 
@@ -128,17 +126,17 @@ Let's look at the customer clusters that were predicted with mean shift. First, 
 
 Next, notice that we used the non-default `cluster_all=False` parameter setting. This allowed the algorithm to take data points in sparse regions and label them as orphans (cluster -1). In the chart, the sparse green points on the left and on the right were orphans. The animated matplotlib chart shows how separating the orphans adds clarity to the remaining clusters and also identifies data points that might be considered anomalies.
 
-![cluster_anomalies.gif](images/cluster_anomalies.gif)
+![cluster_anomalies.gif](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/cluster_anomalies.gif?raw=true)
 
 When comparing to the risk label, it is not obvious if these groupings are significantly more useful than our original three (from k-means), but it would make sense that the orphans and the mini-clusters on the edges would be less likely to be consistent with the more densely clustered customers. Separating them helps clarify our groupings.
 
-![mean_shift_risk.png](images/mean_shift_risk.png)
+![mean_shift_risk.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/mean_shift_risk.png?raw=true)
 
 #### Mean shift moons
 
 Because mean shift at least considers density, you might think it would handle the moons data set better than k-means, but actually, we had to customize the parameters quite a bit before it would recognize two clusters. Even then, you see that a centroid-based approach does not work well to separate the smile from the frown. Notice the long tails of orphans that we got with the `cluster_all=False` setting.
 
-![mean_shift_moons.png](images/mean_shift_moons.png)
+![mean_shift_moons.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images//mean_shift_moons.png?raw=true)
 
 Fortunately, there are density-based algorithms for tackling such problems.
 
@@ -150,7 +148,7 @@ DBSCAN stands for "density-based spatial clustering of applications with noise."
 
 Let's get right to what DBSCAN can do that our centroid-based algorithms failed to do. The following image shows how DBSCAN separated the smile from the frown and also found three points to label as an outliers.
 
-![dbscan_moons.png](images/dbscan_moons.png)
+![dbscan_moons.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images//dbscan_moons.png?raw=true)
 
 This result was exactly what we wanted! However, it's important to note that we had to customize the `eps` parameter to get the result we wanted. DBSCAN uses density to automatically determine the clusters, but `eps` is used to tell it what we consider "dense."
 
@@ -172,7 +170,7 @@ The advantages of DBSCAN include:
 
 In our Notebook, we also used DBSCAN to remove the noise and get a different clustering of the customer data set.
 
-![dbscan_customers.png](images/dbscan_customers.png)
+![dbscan_customers.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images//dbscan_customers.png?raw=true)
 
 ### Hierarchical clustering
 
@@ -186,11 +184,11 @@ In our Notebook, we use scikit-learn's implementation of agglomerative clusterin
 
 One of the interesting things about agglomerative clustering is that you get different cluster sizes. Our customer data demo with agglomerative clustering is interesting because we ended up with 14 clusters of various shapes and sizes.
 
-![ac_customers.png](images/ac_customers.jpg)
+![ac_customers.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/ac_customers.jpg?raw=true)
 
 Once again, we see that this works fine to separate our low-risk customers from high-risk. The higher number of clusters appears unnecessary, but does help with finer distinctions in our customer groupings. The smallest clusters look less significant, but they help clarify the other customer groupings.
 
-![ac_risk.png](images/ac_risk.png)
+![ac_risk.png](https://github.com/jupytercon/2020-ClusteringAlgorithms/blob/master/images/ac_risk.png?raw=true)
 
 ## Use cases
 This section gives you some use cases for unsupervised learning.
